@@ -1,0 +1,13 @@
+name = "phosphor"
+license = "MIT"
+licenselink = "https://github.com/anaskalt/phosphor/blob/main/LICENSE"
+description = "A terminal/CRT-phosphor Hugo theme for security writeups: pentest, embedded, reversing. Dark by design."
+homepage = "https://github.com/anaskalt/phosphor"
+demosite = "https://phosphor.example.com/"
+tags = ["dark", "minimal", "blog", "terminal", "monospace", "security"]
+features = ["syntax-highlighting", "tags", "toc", "rss", "pagination", "copy-code", "render-hooks"]
+min_version = "0.146.0"
+
+[author]
+  name = "you"
+  homepage = "https://deadc0de.sh"

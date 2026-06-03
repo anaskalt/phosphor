@@ -1,0 +1,9 @@
+# Hugo
+/public/
+/resources/_gen/
+/.hugo_build.lock
+# Node (if you add tooling)
+/node_modules/
+# OS / editor
+.DS_Store
+*.swp
