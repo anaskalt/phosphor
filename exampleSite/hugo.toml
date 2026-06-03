@@ -1,9 +1,8 @@
 baseURL = "https://example.com/"
-languageCode = "en-US"
+locale = "en-US"
 title = "phosphor"
 theme = "phosphor"
 enableRobotsTXT = true
-enableEmojis = true
 
 [pagination]
   pagerSize = 5

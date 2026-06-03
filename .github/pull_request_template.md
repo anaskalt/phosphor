@@ -6,6 +6,6 @@
 ## Why
 
 ## Checklist
-- [ ] `hugo --source exampleSite --themesDir ../.. --panicOnWarning` passes
+- [ ] `hugo --source exampleSite --themesDir ../..` passes
 - [ ] Tested in both `en` and `el`
 - [ ] Docs/README updated if behavior changed

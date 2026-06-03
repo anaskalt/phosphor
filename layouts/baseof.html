@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode | default "en" }}" data-theme="dark">
+<html lang="{{ or site.Language.Lang "en" }}" data-theme="dark">
 <head>
   {{ block "title" . -}}
     <title>{{ if .IsHome }}{{ site.Title }}{{ with site.Params.subtitle }} — {{ . }}{{ end }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
