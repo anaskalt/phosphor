@@ -1,0 +1,58 @@
+baseURL = "https://example.com/"
+languageCode = "en-US"
+title = "phosphor"
+theme = "phosphor"
+enableRobotsTXT = true
+enableEmojis = true
+
+[pagination]
+  pagerSize = 5
+
+[taxonomies]
+  tag = "tags"
+
+# Optional: uncomment to enable Google Analytics (the theme already wires it up).
+# [services.googleAnalytics]
+#   ID = "G-XXXXXXXXXX"
+
+[outputs]
+  home = ["html", "rss"]
+
+[params]
+  author      = "deadc0de"
+  promptUser  = "root"
+  promptHost  = "deadc0de"
+  description = "Security writeups: ethical pentesting, embedded, reversing."
+  bio         = "I break things on purpose and write it down. Ethical pentesting, embedded/IoT, and reverse engineering — for education and **authorized** testing only."
+  # favicon   = "favicon.ico"
+
+  [[params.social]]
+    name = "github"
+    url  = "https://github.com/anaskalt"
+  [[params.social]]
+    name = "rss"
+    url  = "/index.xml"
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name       = "posts"
+    pageRef    = "/posts"
+    weight     = 1
+  [[menu.main]]
+    identifier = "about"
+    name       = "about"
+    pageRef    = "/about"
+    weight     = 2
+
+[markup]
+  [markup.highlight]
+    noClasses   = false   # REQUIRED so the theme can color code blocks
+    lineNos     = false
+    tabWidth    = 4
+    guessSyntax = true
+  [markup.goldmark.renderer]
+    unsafe = true         # allow raw HTML in markdown
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel   = 3
