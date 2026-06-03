@@ -1,0 +1,16 @@
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }} home">
+      <span class="dim">{{ site.Params.promptUser | default "root" }}@</span><span class="green">{{ site.Params.promptHost | default "blog" }}</span><span class="dim">:~#</span>
+      <span class="cursor" aria-hidden="true"></span>
+    </a>
+
+    <nav class="nav" aria-label="main">
+      {{- range site.Menus.main }}
+        {{- $url := .URL }}{{ with .Page }}{{ $url = .RelPermalink }}{{ end }}
+        <a href="{{ $url }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{- end }}
+      <a href="{{ "index.xml" | relURL }}">rss</a>
+    </nav>
+  </div>
+</header>

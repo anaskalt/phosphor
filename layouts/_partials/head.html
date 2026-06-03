@@ -1,0 +1,32 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+
+{{ $desc := .Description | default .Summary | default site.Params.description }}
+<meta name="description" content="{{ $desc }}">
+<meta name="author" content="{{ site.Params.author | default site.Title }}">
+{{ with .Params.tags }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+
+{{/* Open Graph + Twitter cards via Hugo's embedded templates. */}}
+{{ partial "opengraph.html" . }}
+{{ partial "twitter_cards.html" . }}
+
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{/* RSS feed (output format enabled in site config) */}}
+{{ with .OutputFormats.Get "rss" -}}
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
+{{ end -}}
+
+{{/* Fonts: Space Mono (display) + JetBrains Mono (body/code) */}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+{{/* Theme CSS through the asset pipeline: minify + fingerprint in production. */}}
+{{- $css := resources.Get "css/main.css" -}}
+{{- if not hugo.IsDevelopment }}{{ $css = $css | minify | fingerprint }}{{ end -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}"{{ end }}>
+
+{{ with site.Params.favicon }}<link rel="icon" href="{{ . | relURL }}">{{ end }}
+{{ if hugo.IsProduction }}{{ partial "google_analytics.html" . }}{{ end }}

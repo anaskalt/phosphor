@@ -1,0 +1,10 @@
+{{/* Reusable meta row for post lists: tags + reading time.
+     (The date is rendered separately above the title in list layouts.) */}}
+<div class="meta-row">
+  {{- with .Params.tags }}
+  <span class="tags">
+    {{- range . }}<a class="tag" href="{{ (printf "/tags/%s" (. | urlize)) | relURL }}">{{ . }}</a>{{ end -}}
+  </span>
+  {{- end }}
+  <span class="rt">{{ .ReadingTime }} min read</span>
+</div>
