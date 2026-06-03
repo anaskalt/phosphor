@@ -1,0 +1,9 @@
+{{ define "main" }}
+  <a class="back" href="{{ site.Home.RelPermalink }}">~</a>
+  <h1 class="section-title">{{ .Title }}</h1>
+  <div class="tag-cloud">
+    {{ range .Data.Terms.Alphabetical }}
+      <a class="tag" href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span style="opacity:.6">({{ .Count }})</span></a>
+    {{ end }}
+  </div>
+{{ end }}

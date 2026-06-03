@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode | default "en" }}" data-theme="dark">
+<head>
+  {{ block "title" . -}}
+    <title>{{ if .IsHome }}{{ site.Title }}{{ with site.Params.subtitle }} — {{ . }}{{ end }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  {{- end }}
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <div class="site">
+    {{ partial "header.html" . }}
+    <main class="content">
+      <div class="wrap">
+        {{ block "main" . }}{{ end }}
+      </div>
+    </main>
+    {{ partial "footer.html" . }}
+  </div>
+
+  {{/* Load the copy-code script only on pages that actually contain a code block. */}}
+  {{- if findRE "<pre" .Content 1 }}
+    {{- $js := resources.Get "js/main.js" | js.Build (dict "minify" (not hugo.IsDevelopment)) -}}
+    {{- if not hugo.IsDevelopment }}{{ $js = $js | fingerprint }}{{ end -}}
+    <script src="{{ $js.RelPermalink }}" {{ with $js.Data.Integrity }}integrity="{{ . }}"{{ end }} defer></script>
+  {{- end }}
+</body>
+</html>

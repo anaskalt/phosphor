@@ -1,0 +1,26 @@
+{{ define "main" }}
+  {{ if not .IsHome }}<a class="back" href="{{ site.Home.RelPermalink }}">~</a>{{ end }}
+  <h1 class="section-title">{{ .Title }}</h1>
+
+  {{ with .Content }}<div class="prose" style="margin-bottom:2rem">{{ . }}</div>{{ end }}
+
+  {{ $paginator := .Paginate .Pages.ByDate.Reverse }}
+  <ul class="post-list">
+    {{ range $paginator.Pages }}
+      <li class="post-item">
+        <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Description | default .Summary }}<p class="excerpt">{{ . | plainify | truncate 160 }}</p>{{ end }}
+        {{ partial "post-meta.html" . }}
+      </li>
+    {{ end }}
+  </ul>
+
+  {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination">
+      {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">&larr; newer</a>{{ else }}<span></span>{{ end }}
+      <span class="page-of">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+      {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">older &rarr;</a>{{ else }}<span></span>{{ end }}
+    </nav>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,38 @@
+{{ define "main" }}
+  <article>
+    {{ if eq .Type "posts" }}<a class="back" href="{{ "/posts/" | relURL }}">posts</a>{{ else }}<a class="back" href="{{ site.Home.RelPermalink }}">~</a>{{ end }}
+
+    <header class="post-header">
+      {{ with .Params.kicker }}<div class="kicker">{{ . }}</div>{{ end }}
+      <h1 class="post-title">{{ .Title }}</h1>
+      <div class="post-meta">
+        <span>{{ .Date.Format "2006-01-02" }}</span>
+        <span>~ {{ .ReadingTime }} min read</span>
+        {{ with .Params.author | default site.Params.author }}<span>by {{ . }}</span>{{ end }}
+      </div>
+      {{ with .Params.tags }}
+        <div class="tags" style="margin-top:0.7rem">
+          {{ range . }}<a class="tag" href="{{ (printf "/tags/%s" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+        </div>
+      {{ end }}
+    </header>
+
+    {{ if and (.Params.toc | default true) (gt (len (.TableOfContents | string)) 60) }}
+      <nav class="toc">
+        <div class="toc-label">contents</div>
+        {{ .TableOfContents }}
+      </nav>
+    {{ end }}
+
+    <div class="prose">
+      {{ .Content }}
+    </div>
+
+    {{ if eq .Type "posts" }}
+      <nav class="post-nav">
+        <span>{{ with .PrevInSection }}<a href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>{{ end }}</span>
+        <span>{{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} &rarr;</a>{{ end }}</span>
+      </nav>
+    {{ end }}
+  </article>
+{{ end }}

@@ -1,0 +1,19 @@
+{{ define "main" }}
+  <section class="whoami">
+    <span class="label">$ whoami</span>
+    {{ if .Content }}{{ .Content }}{{ else }}<p>{{ site.Params.bio }}</p>{{ end }}
+  </section>
+
+  <h1 class="section-title">latest</h1>
+  {{ $posts := where site.RegularPages "Type" "posts" }}
+  <ul class="post-list">
+    {{ range $i, $p := first 12 $posts }}{{ with $p }}
+      <li class="post-item" style="animation-delay: {{ mul $i 0.04 }}s">
+        <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Description | default .Summary }}<p class="excerpt">{{ . | plainify | truncate 160 }}</p>{{ end }}
+        {{ partial "post-meta.html" . }}
+      </li>
+    {{ end }}{{ end }}
+  </ul>
+{{ end }}

@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <a class="back" href="{{ "/tags/" | relURL }}">tags</a>
+  <h1 class="section-title">#{{ .Title }}</h1>
+
+  <ul class="post-list">
+    {{ range .Pages.ByDate.Reverse }}
+      <li class="post-item">
+        <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Description | default .Summary }}<p class="excerpt">{{ . | plainify | truncate 160 }}</p>{{ end }}
+        {{ partial "post-meta.html" . }}
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
