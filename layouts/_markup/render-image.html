@@ -1,0 +1,4 @@
+{{- /* Lazy, async-decoded images. Kept inline (no <figure>) so the output stays
+       valid when Goldmark wraps a standalone image in a <p>. */ -}}
+{{- $alt := .PlainText | default .Text -}}
+<img src="{{ .Destination | safeURL }}" alt="{{ $alt }}" loading="lazy" decoding="async"{{ with .Title }} title="{{ . }}"{{ end }}>
