@@ -9,5 +9,5 @@ features = ["syntax-highlighting", "tags", "toc", "rss", "pagination", "copy-cod
 min_version = "0.146.0"
 
 [author]
-  name = "you"
+  name = "Anastasios Kaltakis"
   homepage = "https://deadc0de.sh"
