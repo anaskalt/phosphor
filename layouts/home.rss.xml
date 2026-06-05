@@ -1,8 +1,8 @@
-{{- /* Home feed: list only posts (not standalone pages like /about/). */ -}}
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+{{- /* Home feed lists only posts, not standalone pages like /about/. */ -}}
 {{- $pages := (where site.RegularPages "Type" "posts").ByDate.Reverse -}}
 {{- $limit := site.Config.Services.RSS.Limit -}}
-{{- if ge $limit 1 }}{{ $pages = $pages | first $limit }}{{ end -}}
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+{{- if ge $limit 1 }}{{ $pages = $pages | first $limit }}{{ end }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>{{ site.Title }}</title>
